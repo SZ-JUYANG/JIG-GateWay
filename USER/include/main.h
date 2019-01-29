@@ -41,7 +41,7 @@
  #define ID_END              (ID_START + ID_TOTAL)   /* 结束的ID */
 #endif
 #define ID_START             0x0100708A
-#define WRITE_EEPROM_EN      1 /* 修改存储在EEPROM的ID使能位；0：关闭；1：使能 */
+#define WRITE_EEPROM_EN      0 /* 修改存储在EEPROM的ID使能位；0：关闭；1：使能 */
 
 /* Includes ------------------------------------------------------------------*/
 

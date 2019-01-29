@@ -241,7 +241,6 @@ void DataInit(void)
 	}
 
 	ReadFailID_FromEEPROM();
-
 	DisplayString(1,2,"聚阳电子");
 	DisplayString(1,7,"闲");
 	sprintf(cPrintTable,"ID:%08X",g_uiCurrentID);
@@ -303,25 +302,25 @@ unsigned char  ReadFailID_FromEEPROM(void)
 	unsigned char ucNum = 0;
 	OS_ERR err;
 
-	for (i = 0;i < 5;i++){
+	for(i = 0;i < 5;i++){
 		AT24CXX_Read(PLC_FAIL_ID_NUM_ADD,ucTempID,5);//读取分配失败的ID 个数
-		if (CheckEEPROM_Frame(ucTempID,5)){
+		if(CheckEEPROM_Frame(ucTempID,5)){
 			ucFailIDNum = ucTempID[2];
 			break;
 		}
 		OSTimeDlyHMSM(0,0,0,50,OS_OPT_TIME_HMSM_STRICT,&err);
 	}
-	if (i >= 5){
+	if(i >= 5){
 		g_ucEepromError = EEPROM_ERR_01;
 		return 0;
 	}	
 
-	if (ucFailIDNum > 0){                              
+	if(ucFailIDNum > 0){                              
 		ucNum = ucFailIDNum*4+4;
-		for (i = 0;i < 5;i++){
+		for(i = 0;i < 5;i++){
 			AT24CXX_Read(PLC_FAIL_ID_ADD,ucTempID,ucNum);////读取分配失败的ID
-			if (CheckEEPROM_Frame(ucTempID,ucNum)){
-				for (j = 0;j < ucFailIDNum;j++){  // g_uiFailID
+			if(CheckEEPROM_Frame(ucTempID,ucNum)){
+				for(j = 0;j < ucFailIDNum;j++){  // g_uiFailID
 					g_uiFailID[j] = ucTempID[2+(j*4)];
 					g_uiFailID[j] = (g_uiFailID[j]<<8) + ucTempID[3+(j*4)];
 					g_uiFailID[j] = (g_uiFailID[j]<<8) + ucTempID[4+(j*4)];								
@@ -331,7 +330,7 @@ unsigned char  ReadFailID_FromEEPROM(void)
 			}
 			OSTimeDlyHMSM(0,0,0,50,OS_OPT_TIME_HMSM_STRICT,&err);
 		}
-		if (i >= 5){
+		if(i >= 5){
 			g_ucEepromError = EEPROM_ERR_02;
 			return 0;
 		}
@@ -808,8 +807,8 @@ void ConfirmID(unsigned char ucJigID,unsigned char ucVal)
 void AddToTask(ScmTask sNewTask)
 {
 	unsigned char i;            //sResponseTask[TASK_MAX]
-	for (i=0;i<TASK_MAX;i++){
-		if (fg_sTask[i].ucJigID == sNewTask.ucJigID ){
+	for(i=0;i<TASK_MAX;i++){
+		if(fg_sTask[i].ucJigID == sNewTask.ucJigID ){
 			//fg_sTask[i].ucState = ON_LINE;                //在线
 			fg_sTask[i].ucTaskType = sNewTask.ucTaskType;						
 			fg_sTask[i].ucTimeOutCnt = sNewTask.ucTimeOutCnt;
@@ -894,6 +893,7 @@ void CheckReceiveData(unsigned char *pucInputData,unsigned char ucDataLen)
 *TaskOperation(void)
 *
 ***************************************************************************/
+
 void TaskOperation(void)
 {
 	unsigned char i,k;        
@@ -905,6 +905,8 @@ void TaskOperation(void)
 	unsigned char ucTempIDBuf[4];
 	
 	for(i=0;i<TASK_MAX;i++){  //通过LORA轮流向节点（测试治具）发送心跳  
+		extern unsigned char g_ucNodeCurrentIndex;
+		g_ucNodeCurrentIndex = i;
 		if(s_ucRecvFlag == 1){  //上一次接收成功 则延时2s再进行下一次
 			s_ucRecvFlag = 0;
 			for(k=j;k<(100+j);k++){

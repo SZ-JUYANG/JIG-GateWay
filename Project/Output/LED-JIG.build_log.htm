@@ -21,194 +21,12 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.14.0_KEIL
 Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
-E:\聚阳\01. 项目\03. 测试制具\07. 网关测试治具\程序\LoraGatewayJig(wzh add explain)\Project\LED-JIG.uvprojx
+E:\聚阳\GITraken\JIG-GateWay\Project\LED-JIG.uvprojx
 Project File Date:  03/16/2018
 
 <h2>Output:</h2>
 Build target 'LED-JIG'
-compiling main.c...
-..\USER\include\RTC.h(31): warning:  #1295-D: Deprecated declaration RTC_GetTimeStr - give arg types
-  char *RTC_GetTimeStr();
-..\USER\include\RTC.h(33): warning:  #1295-D: Deprecated declaration RTC_GetTime - give arg types
-  TimeStruct RTC_GetTime();
-..\USER\source\main.c(397): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                        DisplayString(2,7,cDis);        //显示
-..\USER\source\main.c(402): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                        DisplayString(3,7,cDis);        //显示
-..\USER\source\main.c: 4 warnings, 0 errors
-compiling stm32f10x_it.c...
-..\USER\source\stm32f10x_it.c(218): warning:  #550-D: variable "ucTempReceiveData" was set but never used
-        unsigned char ucTempReceiveData = 0;
-..\USER\source\stm32f10x_it.c(219): warning:  #177-D: variable "ucIndex" was declared but never referenced
-        static unsigned char ucIndex = 0;
-..\USER\source\stm32f10x_it.c(320): warning:  #177-D: variable "cnt" was declared but never referenced
-  static unsigned short int cnt = 0;
-..\USER\source\stm32f10x_it.c: 3 warnings, 0 errors
-compiling System_Initialize.c...
-..\USER\source\System_Initialize.c(184): warning:  #177-D: variable "ucTemp" was declared but never referenced
-    unsigned char ucTemp[4] = {0x00};
-..\USER\source\System_Initialize.c: 1 warning, 0 errors
-compiling LCD12864B.c...
-compiling MENU.c...
-..\USER\source\MENU.c(341): warning:  #550-D: variable "ucTemp" was set but never used
-    unsigned char ucTemp[2] = {0};
-..\USER\source\MENU.c(421): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(1,3,cPrintBu);
-..\USER\source\MENU.c(424): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(2,5,cPrintBu);
-..\USER\source\MENU.c(427): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,5,cPrintBu); 
-..\USER\source\MENU.c(430): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(4,5,cPrintBu); 
-..\USER\source\MENU.c(412): warning:  #550-D: variable "ucTemp" was set but never used
-   unsigned char ucTemp[2] = {0};
-..\USER\source\MENU.c(451): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                        DisplayString(4,1,cPrintTable);
-..\USER\source\MENU.c(454): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                DisplayString(2,1,cPrintTable);
-..\USER\source\MENU.c(461): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                          DisplayString(4,7,cPrintTable);                               
-..\USER\source\MENU.c(480): warning:  #111-D: statement is unreachable
-                   break;                                                                
-..\USER\source\MENU.c(519): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(1,3,cPrintBu);
-..\USER\source\MENU.c(522): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(1,7,cPrintBu);
-..\USER\source\MENU.c(525): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,5,cPrintBu);
-..\USER\source\MENU.c(582): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,5,cPrintBu);            
-..\USER\source\MENU.c(600): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,5,cPrintBu);    
-..\USER\source\MENU.c(660): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(1,3,cPrintBu);    
-..\USER\source\MENU.c(674): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(1,7,cPrintBu);    
-..\USER\source\MENU.c(695): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(2,2,cPrintBu);
-..\USER\source\MENU.c(697): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,2,cPrintBu);
-..\USER\source\MENU.c(699): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(4,2,cPrintBu);
-..\USER\source\MENU.c(720): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(2,2,cPrintBu);
-..\USER\source\MENU.c(741): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,2,cPrintBu);
-..\USER\source\MENU.c(763): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(4,2,cPrintBu);
-..\USER\source\MENU.c(773): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(1,2,cPrintBu);
-..\USER\source\MENU.c(775): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(2,2,cPrintBu);
-..\USER\source\MENU.c(777): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,2,cPrintBu);
-..\USER\source\MENU.c(801): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(1,2,cPrintBu);
-..\USER\source\MENU.c(821): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(2,2,cPrintBu);
-..\USER\source\MENU.c(841): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,2,cPrintBu);
-..\USER\source\MENU.c: 29 warnings, 0 errors
-compiling TaskApp.c...
-..\USER\source\TaskApp.c(158): warning:  #177-D: variable "i" was declared but never referenced
-        unsigned char i;
-..\USER\source\TaskApp.c(192): warning:  #177-D: variable "j" was declared but never referenced
-      unsigned char i,j,ucXor = 0;
-..\USER\source\TaskApp.c(205): warning:  #177-D: variable "j" was declared but never referenced
-      unsigned char i,j,ucCs = 0;
-..\USER\source\TaskApp.c(346): warning:  #177-D: variable "k" was declared but never referenced
-    unsigned char i,j,k;
-..\USER\source\TaskApp.c(439): warning:  #177-D: variable "cs" was declared but never referenced
-    unsigned char i,j,k,cs,ucFC1=0,ucFC2=0;
-..\USER\source\TaskApp.c(533): warning:  #177-D: variable "cs" was declared but never referenced
-    unsigned char i,j,k,cs,ucFC1=0,ucFC2=0;
-..\USER\source\TaskApp.c(608): warning:  #177-D: variable "cs" was declared but never referenced
-    unsigned char i,j,k,cs,ucFC1=0,ucFC2=0;
-..\USER\source\TaskApp.c(692): warning:  #177-D: variable "k" was declared but never referenced
-    unsigned char i,j,k;
-..\USER\source\TaskApp.c(983): warning:  #177-D: variable "ucReturnVal" was declared but never referenced
-        unsigned char ucReturnVal = 0;
-..\USER\source\TaskApp.c(1031): warning:  #177-D: variable "k" was declared but never referenced
-        unsigned char i,j,k,cs = 0,ucReturn;
-..\USER\source\TaskApp.c(1219): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                    DisplayString(3,1,cPrintTable);
-..\USER\source\TaskApp.c(1229): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                              DisplayString(2,6,cPrintTable);
-..\USER\source\TaskApp.c(1391): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                        DisplayString(4,5,cPrintTable);
-..\USER\source\TaskApp.c(1438): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                        DisplayString(4,5,cPrintTable);
-..\USER\source\TaskApp.c(1448): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                        DisplayString(4,5,cPrintTable);
-..\USER\source\TaskApp.c(1458): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                        DisplayString(4,5,cPrintTable);
-..\USER\source\TaskApp.c(1468): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                        DisplayString(4,5,cPrintTable);
-..\USER\source\TaskApp.c(1480): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                        DisplayString(4,5,cPrintTable);
-..\USER\source\TaskApp.c(1490): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                        DisplayString(4,5,cPrintTable);
-..\USER\source\TaskApp.c(1517): warning:  #111-D: statement is unreachable
-                   break;                                                                
-..\USER\source\TaskApp.c(1543): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                DisplayString(3,1,cPrintTable);
-..\USER\source\TaskApp.c(1550): warning:  #223-D: function "AT24CXX_Write" declared implicitly
-                                  AT24CXX_Write(CUR_ID_ADD,UnData.ucDataTable,4);
-..\USER\source\TaskApp.c(1552): warning:  #223-D: function "AT24CXX_Read" declared implicitly
-                                  AT24CXX_Read(CUR_ID_ADD,UnData.ucDataTable,4);//读取当前ID 
-..\USER\source\TaskApp.c(1564): warning:  #223-D: function "GP9034T_PrintOneData" declared implicitly
-                                          GP9034T_PrintOneData(uiTempID,ScmJIG.ucDeviceCode,ScmJIG.ucYear,ScmJIG.ucmonth);//
-..\USER\source\TaskApp.c(1571): warning:  #223-D: function "GP9034T_PrintData" declared implicitly
-                                GP9034T_PrintData(DPS_WritePara.uiID,ScmJIG.ucDeviceCode,ScmJIG.ucYear,ScmJIG.ucmonth);
-..\USER\source\TaskApp.c(1140): warning:  #177-D: variable "ucTempTable" was declared but never referenced
-          unsigned char ucTempTable[16] = {0x00};
-..\USER\source\TaskApp.c(1143): warning:  #177-D: variable "ucDataL" was declared but never referenced
-                unsigned char ucDataL;
-..\USER\source\TaskApp.c(1144): warning:  #177-D: variable "uiDataH" was declared but never referenced
-                unsigned short int uiDataH;
-..\USER\source\TaskApp.c: 28 warnings, 0 errors
-compiling IT8512B.c...
-compiling LoraC8000.c...
-..\USER\source\LoraC8000.c(221): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(4,6,cPrintTable); //显示
-..\USER\source\LoraC8000.c(248): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-        DisplayString(3,1,cPrintTable); 
-..\USER\source\LoraC8000.c(194): warning:  #177-D: variable "j" was declared but never referenced
-        unsigned char i,j,ucNum = 0; //
-..\USER\source\LoraC8000.c(194): warning:  #177-D: variable "ucNum" was declared but never referenced
-        unsigned char i,j,ucNum = 0; //
-..\USER\source\LoraC8000.c(263): warning:  #177-D: variable "err" was declared but never referenced
-        OS_ERR err;
-..\USER\source\LoraC8000.c(265): warning:  #177-D: variable "ucReadFailID" was declared but never referenced
-        unsigned char ucReadFailID[FAIL_ID_MAX*4]= {0}; //
-..\USER\source\LoraC8000.c(301): warning:  #177-D: variable "unID" was declared but never referenced
-        }unID;
-..\USER\source\LoraC8000.c(427): warning:  #177-D: variable "sTempTask" was declared but never referenced
-        ScmTask          sTempTask;
-..\USER\source\LoraC8000.c(428): warning:  #177-D: variable "sTempReTask" was declared but never referenced
-        ScmResponseTask  sTempReTask;
-..\USER\source\LoraC8000.c(465): warning:  #177-D: variable "ucTaskCnt" was declared but never referenced
-        unsigned char i,j,ucTaskCnt = 0;
-..\USER\source\LoraC8000.c(708): warning:  #177-D: variable "j" was declared but never referenced
-        unsigned char i,j,ucLen;
-..\USER\source\LoraC8000.c(831): warning:  #177-D: variable "ucJIG_ID" was declared but never referenced
-        unsigned char ucJIG_ID = 0;
-..\USER\source\LoraC8000.c(952): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                                        DisplayString(3,1,cPrintTable);
-..\USER\source\LoraC8000.c(973): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
-                                                DisplayString(4,6,cPrintTable);                                                                                                                                                         
-..\USER\source\LoraC8000.c(904): warning:  #177-D: variable "uiTempID" was declared but never referenced
-        unsigned int uiTempID;
-..\USER\source\LoraC8000.c: 15 warnings, 0 errors
-compiling LoraC6000.c...
-..\USER\source\LoraC6000.c(25): warning:  #177-D: variable "NVIC_InitStructure" was declared but never referenced
-        NVIC_InitTypeDef NVIC_InitStructure;
-..\USER\source\LoraC6000.c: 1 warning, 0 errors
-compiling RS485.c...
-linking...
-Program Size: Code=69684 RO-data=1292 RW-data=384 ZI-data=46944  
-FromELF: creating hex file...
-".\Output\LED-JIG.axf" - 0 Error(s), 81 Warning(s).
+".\Output\LED-JIG.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -219,7 +37,7 @@ Package Vendor: ARM
    * Component: CORE Version: 3.40.0
 
 <h2>Collection of Component include folders:</h2>
-  E:\聚阳\01. 项目\03. 测试制具\07. 网关测试治具\程序\LoraGatewayJig(wzh add explain)\Project\RTE
+  E:\聚阳\GITraken\JIG-GateWay\Project\RTE
   C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0
 

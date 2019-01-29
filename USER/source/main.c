@@ -349,27 +349,94 @@ void led0_task(void *p_arg)
 				RX_D_LED_ON();    
 			}					
 		}				
-
 		OSTimeDlyHMSM(0,0,0,200,OS_OPT_TIME_HMSM_STRICT,&err); //延时250ms
 	}
 }
 unsigned char ucEEPROM_0[50] = {0x00};
-//
+unsigned char g_ucNodeCurrentIndex = 0;
 //led1任务函数
 void led1_task(void *p_arg)
-{
+{ 
+	unsigned char ucNodeDisplay[] = "JID:xx,xx,xx,xx";
+	unsigned char ucNodeGroup;
+	unsigned char ucIndex;
+	unsigned char ucFlashFlag = 0; /* 闪烁的标志 */
 	OS_ERR err;
 	p_arg = p_arg;
-	while(1)
-	{     //显示屏幕右上角跳动的心脏。
-		  ucHeartBeatCnt++;
-		  if(ucHeartBeatCnt == 3){
-		      DisplayChar(1,8,0x03); //0x03 heart
-		  }else if(ucHeartBeatCnt == 6){
-			    ucHeartBeatCnt = 0;    
-			    DisplayChar(1,8,0x20);//0x20 space
-		  } 		
-		  OSTimeDlyHMSM(0,0,0,250,OS_OPT_TIME_HMSM_STRICT,&err); //延时500ms
+	while(1){     //显示屏幕右上角跳动的心脏。
+		extern unsigned char ucNodeIDTable[];	
+		ucHeartBeatCnt++;
+		if(ucHeartBeatCnt == 3){
+			ucFlashFlag = 1;
+			DisplayChar(1,8,0x03); //0x03 heart
+		}else if(ucHeartBeatCnt == 6){
+			ucFlashFlag = 0;
+			ucHeartBeatCnt = 0;    
+			DisplayChar(1,8,0x20);//0x20 space
+		} 	
+	/* 显示从治具ID */
+		ucNodeGroup = g_ucNodeCurrentIndex / 4;
+		ucIndex = ucNodeGroup * 4;
+		/* 显示第1个从治具ID */
+		if((ucIndex < NODE_NUM) && (ucIndex != g_ucNodeCurrentIndex || ucFlashFlag)){
+			/* 显示的条件：1、数组下标在合理范围；2、不是当前通信的从节点治具或者不要求闪烁 */
+			ucNodeDisplay[4] = ucNodeIDTable[ucIndex]%100/10 + 0x30;
+			ucNodeDisplay[5] = ucNodeIDTable[ucIndex]%10 + 0x30;
+		}else{/* 隐藏ID的条件：1、数组下标超限；2、是当前通信的从节点治具且属于闪烁关闭状态 */
+			ucNodeDisplay[4] = ' ';
+			ucNodeDisplay[5] = ' ';
+		}
+		/* 显示第2个从治具ID */
+		ucIndex++;
+		if((ucIndex < NODE_NUM) && (ucIndex != g_ucNodeCurrentIndex || ucFlashFlag)){
+			ucNodeDisplay[6] = ',';
+			ucNodeDisplay[7] = ucNodeIDTable[ucIndex]%100/10 + 0x30;
+			ucNodeDisplay[8] = ucNodeIDTable[ucIndex]%10 + 0x30;
+		}else{
+			if(ucIndex < NODE_NUM){ /* 逗号不闪烁 */
+			  ucNodeDisplay[6] = ',';
+			}else{
+				ucNodeDisplay[6] = ' ';
+			}
+			ucNodeDisplay[7] = ' ';
+			ucNodeDisplay[8] = ' ';
+		}
+		/* 显示第3个从治具ID */
+		ucIndex++;
+		if((ucIndex < NODE_NUM) && (ucIndex != g_ucNodeCurrentIndex || ucFlashFlag)){
+			ucNodeDisplay[9] = ',';
+			ucNodeDisplay[10] = ucNodeIDTable[ucIndex]%100/10 + 0x30;
+			ucNodeDisplay[11] = ucNodeIDTable[ucIndex]%10 + 0x30;
+		}else{
+			if(ucIndex < NODE_NUM){ /* 逗号不闪烁 */
+			  ucNodeDisplay[9] = ',';
+			}else{
+				ucNodeDisplay[9] = ' ';
+			}
+			ucNodeDisplay[10] = ' ';
+			ucNodeDisplay[11] = ' ';
+		}
+		/* 显示第4个从治具ID */
+		ucIndex++;
+		if((ucIndex < NODE_NUM) && (ucIndex != g_ucNodeCurrentIndex || ucFlashFlag)){
+			ucNodeDisplay[12] = ',';
+			ucNodeDisplay[13] = ucNodeIDTable[ucIndex]%100/10 + 0x30;
+			ucNodeDisplay[14] = ucNodeIDTable[ucIndex]%10 + 0x30;
+		}else{
+			if(ucIndex < NODE_NUM){ /* 逗号不闪烁 */
+			  ucNodeDisplay[12] = ',';
+			}else{
+				ucNodeDisplay[12] = ' ';
+			}
+			ucNodeDisplay[13] = ' ';
+			ucNodeDisplay[14] = ' ';
+		}
+#if WRITE_EEPROM_EN == 0
+		if(!g_ucEepromError){
+		  DisplayString(2,1,ucNodeDisplay);
+	  }
+#endif
+		OSTimeDlyHMSM(0,0,0,150,OS_OPT_TIME_HMSM_STRICT,&err); //延时100ms
 	}
 }
 
@@ -384,9 +451,9 @@ void Key_task(void *p_arg)
 #endif
 	OS_ERR err;
 	p_arg = p_arg;
-	
 	while(1)
-	{    	    
+	{  
+#if WRITE_EEPROM_EN == 0		
 		if(g_ucEepromError == 0){
 			TaskOperation();  //主要的函数
 		}else if(g_ucEepromError == 0xff){
@@ -401,14 +468,7 @@ void Key_task(void *p_arg)
 			sprintf(cDis,"%2d",g_ucEepromError);
 			DisplayString(3,7,cDis);	//显示
 			g_ucEepromError = 0xff;
-		}
-/*
-unsigned int g_uiCurrentID = 0x01004268;      //将要使用的ID
-unsigned int g_uiFailID[FAIL_ID_MAX]={0x00} ;  //分配未成功的ID 下次用
-unsigned char ucFailIDNum = 0; 
-unsigned int g_uiUsedID_Num = 0;//
-*/		
-				
+		}			
     if(g_ucGC9200_RcvFlag > 0){        //buffer available
 			if((g_ucGC9200_RecBuf[0] == 0xA1)&&(g_ucGC9200_RecBuf[1] == 0xA1)&&(g_ucGC9200_RecBuf[2] == 0xA1)){//设置初始值 main
 //        g_uiCurrentID = 0x04020001;//0x04000119;  //ID
@@ -437,9 +497,9 @@ unsigned int g_uiUsedID_Num = 0;//
 			g_ucGC9200_RecBuf[1] = 0;
 			g_ucGC9200_RcvFlag = 0;				
 		}
-		OSTimeDlyHMSM(0,0,0,10,OS_OPT_TIME_HMSM_STRICT,&err); //延时20ms
+		OSTimeDlyHMSM(0,0,0,20,OS_OPT_TIME_HMSM_STRICT,&err); //延时20ms
 //////add by wzh//////////
-#if WRITE_EEPROM_EN == 1
+#elif WRITE_EEPROM_EN == 1
 		if(s_ucFlag){
 			s_ucFlag = 0;/* 只写一次 */
 			g_uiCurrentID = ID_START;//0x04000119;  //ID
@@ -461,9 +521,27 @@ unsigned int g_uiUsedID_Num = 0;//
 			ucWriteDataBuf[3] = (g_uiUsedID_Num>>0)&0xff;
 			SaveDadaToEEPROM(ID_USED_NUM_ADD,ucWriteDataBuf,4);	//
 			GC9200_SendString(ucRes,2);
+			OSTimeDlyHMSM(0,0,0,20,OS_OPT_TIME_HMSM_STRICT,&err); //延时20ms
+		}else{ /*读出写入的ID*/ 
+			unsigned char CheckEEPROM_Frame(unsigned char *pucInputData,unsigned char ucLen);
+			unsigned char ucTempEEPROM[50] = {0x00};
+			char cPrintTable[16] = {0x00};
+			AT24CXX_Read(PLC_CURRENT_ID_ADD,ucTempEEPROM,8);//读取当前ID(未使用)
+			if(CheckEEPROM_Frame(ucTempEEPROM,8)){
+				g_uiCurrentID = ucTempEEPROM[2];
+				g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[3];
+				g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[4];
+				g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[5];
+				//break;
+			}
+			sprintf(cPrintTable,"ID:%08X",g_uiCurrentID);
+			while(1){
+				DisplayString(2,1,"  ID修改完毕  ");
+				DisplayString(3,1,cPrintTable);
+			  OSTimeDlyHMSM(0,0,0,20,OS_OPT_TIME_HMSM_STRICT,&err); 
+			}
 		}
-#endif 
-		
+#endif 	
 	}
 }
 
