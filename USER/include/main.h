@@ -41,8 +41,14 @@
  #define ID_END              (ID_START + ID_TOTAL)   /* 结束的ID */
 #endif
 #define ID_START             0x0100708A
-#define WRITE_EEPROM_EN      0 /* 修改存储在EEPROM的ID使能位；0：关闭；1：使能 */
+#define WRITE_EEPROM_EN      0 /* 修改存储在EEPROM的ID使能位；0：关闭； 1：修改ID； 2：修改FLASH存储的修改时间为0 */
+#if WRITE_EEPROM_EN == 1
+	#define MODIFY_TIME_YEAR           0x2019   /* 年：   0Xyyyy */
+	#define MODIFY_TIME_MONTH_DATE     0x0221   /* 月日：0xmmdd */
+	#define MODIFY_TIME_HOUR_MIN       0x1504   /* 时分：0xhhmm */
+#endif
 
+#define ID_RECYCLE_EN        0 /* 分配失败的ID回收功能使能位： 0：关闭；1：使能 */
 /* Includes ------------------------------------------------------------------*/
 
 //#include "stm32f10x.h"

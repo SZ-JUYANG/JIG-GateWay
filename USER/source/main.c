@@ -38,6 +38,7 @@
 #include "LoraC8000.h"
 #include "LoraC6000.h"
 #include "RS485.h"
+#include "FlashOperate.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -500,46 +501,120 @@ void Key_task(void *p_arg)
 		OSTimeDlyHMSM(0,0,0,20,OS_OPT_TIME_HMSM_STRICT,&err); //延时20ms
 //////add by wzh//////////
 #elif WRITE_EEPROM_EN == 1
-		if(s_ucFlag){
-			s_ucFlag = 0;/* 只写一次 */
-			g_uiCurrentID = ID_START;//0x04000119;  //ID
-			g_uiUsedID_Num = 0;
-			ucFailIDNum = 0;
-			memset(g_uiFailID,0,FAIL_ID_MAX);
-				
-			SaveFailID_ToEEPROM();
-				
-			ucWriteDataBuf[0] = g_uiCurrentID>>24&0xff;   // in main.c 
-			ucWriteDataBuf[1] = (g_uiCurrentID>>16)&0xff;
-			ucWriteDataBuf[2] = (g_uiCurrentID>>8)&0xff;
-			ucWriteDataBuf[3] = (g_uiCurrentID>>0)&0xff;
-			SaveDadaToEEPROM(PLC_CURRENT_ID_ADD,ucWriteDataBuf,4);
-				
-			ucWriteDataBuf[0] = g_uiUsedID_Num>>24&0xff;
-			ucWriteDataBuf[1] = (g_uiUsedID_Num>>16)&0xff;
-			ucWriteDataBuf[2] = (g_uiUsedID_Num>>8)&0xff;
-			ucWriteDataBuf[3] = (g_uiUsedID_Num>>0)&0xff;
-			SaveDadaToEEPROM(ID_USED_NUM_ADD,ucWriteDataBuf,4);	//
-			GC9200_SendString(ucRes,2);
-			OSTimeDlyHMSM(0,0,0,20,OS_OPT_TIME_HMSM_STRICT,&err); //延时20ms
-		}else{ /*读出写入的ID*/ 
-			unsigned char CheckEEPROM_Frame(unsigned char *pucInputData,unsigned char ucLen);
-			unsigned char ucTempEEPROM[50] = {0x00};
-			char cPrintTable[16] = {0x00};
-			AT24CXX_Read(PLC_CURRENT_ID_ADD,ucTempEEPROM,8);//读取当前ID(未使用)
-			if(CheckEEPROM_Frame(ucTempEEPROM,8)){
-				g_uiCurrentID = ucTempEEPROM[2];
-				g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[3];
-				g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[4];
-				g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[5];
-				//break;
-			}
-			sprintf(cPrintTable,"ID:%08X",g_uiCurrentID);
+		unsigned char CheckEEPROM_Frame(unsigned char *pucInputData,unsigned char ucLen);
+		unsigned char ucTempEEPROM[50] = {0x00};
+		ScmModifyTime  sModifyTimeLast, sModifyTimeTemp;
+		unsigned char ucRezult;
+		unsigned char ucModifyEn;
+		char cPrintTable[16] = {0x00};
+		AT24CXX_Read(PLC_CURRENT_ID_ADD,ucTempEEPROM,8);//读取当前ID(未使用)
+		if(CheckEEPROM_Frame(ucTempEEPROM,8)){
+			g_uiCurrentID = ucTempEEPROM[2];
+			g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[3];
+			g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[4];
+			g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[5];
+		}
+		/* 判断当前的ID是否是等于要设置的ID */
+		if(g_uiCurrentID != ID_START){ /* 不相等就保存 */
+      s_ucFlag = 0;
+		}else{/* 相等不用保存 */
+      s_ucFlag = 1;
+		}
+		/* 读出上次修改ID的时间 */
+		sModifyTimeLast = ReadModifyTime(FLASH_MODIFY_TIME_ADR, &ucRezult);
+		if(ucRezult == 0){ /* 保存的数据非法 */
 			while(1){
-				DisplayString(2,1,"  ID修改完毕  ");
-				DisplayString(3,1,cPrintTable);
-			  OSTimeDlyHMSM(0,0,0,20,OS_OPT_TIME_HMSM_STRICT,&err); 
+				DisplayString(2,1,"FLASH 存储非法");
+				OSTimeDlyHMSM(0,0,0,500,OS_OPT_TIME_HMSM_STRICT,&err); 
+				g_ucBeepOnCnt = 0;
 			}
+		}
+		switch(s_ucFlag){
+			case 0: /* 修改ID */
+				ucModifyEn = 1;
+				if(sModifyTimeLast.uiYear > MODIFY_TIME_YEAR){
+					ucModifyEn = 0;
+				}else if(sModifyTimeLast.uiMonthDate > MODIFY_TIME_MONTH_DATE){
+					ucModifyEn = 0;
+				}else if(sModifyTimeLast.uiHourMin >= MODIFY_TIME_HOUR_MIN){
+					ucModifyEn = 0;
+				}
+				/* 判断是否修改ID */
+				if(ucModifyEn){/* 修改ID，保存修改时间 */
+					sModifyTimeTemp.uiYear = MODIFY_TIME_YEAR;
+					sModifyTimeTemp.uiMonthDate = MODIFY_TIME_MONTH_DATE;
+					sModifyTimeTemp.uiHourMin = MODIFY_TIME_HOUR_MIN;
+					SaveModifyTime(FLASH_MODIFY_TIME_ADR, sModifyTimeTemp);
+					g_uiCurrentID = ID_START;//0x04000119;  //ID
+					g_uiUsedID_Num = 0;
+					ucFailIDNum = 0;
+					memset(g_uiFailID,0,FAIL_ID_MAX);
+					SaveFailID_ToEEPROM();
+			
+					ucWriteDataBuf[0] = g_uiCurrentID>>24&0xff;   // in main.c 
+					ucWriteDataBuf[1] = (g_uiCurrentID>>16)&0xff;
+					ucWriteDataBuf[2] = (g_uiCurrentID>>8)&0xff;
+					ucWriteDataBuf[3] = (g_uiCurrentID>>0)&0xff;
+					SaveDadaToEEPROM(PLC_CURRENT_ID_ADD,ucWriteDataBuf,4);
+						
+					ucWriteDataBuf[0] = g_uiUsedID_Num>>24&0xff;
+					ucWriteDataBuf[1] = (g_uiUsedID_Num>>16)&0xff;
+					ucWriteDataBuf[2] = (g_uiUsedID_Num>>8)&0xff;
+					ucWriteDataBuf[3] = (g_uiUsedID_Num>>0)&0xff;
+					SaveDadaToEEPROM(ID_USED_NUM_ADD,ucWriteDataBuf,4);	//
+					GC9200_SendString(ucRes,2);
+					OSTimeDlyHMSM(0,0,0,20,OS_OPT_TIME_HMSM_STRICT,&err); //延时20ms
+				}else{ /* 修改过了，不能再修改 */
+					while(1){
+						DisplayString(2,1,"文件失效修改失败");
+						OSTimeDlyHMSM(0,0,0,500,OS_OPT_TIME_HMSM_STRICT,&err); 
+						g_ucBeepOnCnt = 0;
+					}
+				}
+			case 1: /* 不修改ID */
+				AT24CXX_Read(PLC_CURRENT_ID_ADD,ucTempEEPROM,8);//读取当前ID(未使用)
+				if(CheckEEPROM_Frame(ucTempEEPROM,8)){
+					g_uiCurrentID = ucTempEEPROM[2];
+					g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[3];
+					g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[4];
+					g_uiCurrentID = (g_uiCurrentID << 8) + ucTempEEPROM[5];
+					//break;
+				}
+				sprintf(cPrintTable,"ID:%08X",g_uiCurrentID);
+				while(1){
+					DisplayString(2,1,"  ID修改完毕  ");
+					DisplayString(3,1,cPrintTable);
+					OSTimeDlyHMSM(0,0,0,500,OS_OPT_TIME_HMSM_STRICT,&err);
+          g_ucBeepOnCnt = 0;					
+				}
+				break;
+		}
+#elif WRITE_EEPROM_EN == 2
+		ScmModifyTime  sModifyTimeLast, sModifyTimeTemp;
+		unsigned char ucRezult;
+		sModifyTimeLast = ReadModifyTime(FLASH_MODIFY_TIME_ADR, &ucRezult);
+		switch(ucRezult){
+			case 1: /* 读出的数据合法 */
+				/* 判断是否需要保存数据 */
+				if(sModifyTimeLast.uiYear != 0 || sModifyTimeLast.uiMonthDate != 0 || sModifyTimeLast.uiHourMin != 0){
+					/* 将修改时间恢复为0 */
+					sModifyTimeTemp.uiYear = 0;
+					sModifyTimeTemp.uiMonthDate = 0;
+					sModifyTimeTemp.uiHourMin = 0;
+					SaveModifyTime(FLASH_MODIFY_TIME_ADR, sModifyTimeTemp);
+				}
+				break;
+			case 0: /* 读出的数据非法 */
+				sModifyTimeTemp.uiYear = 0;
+				sModifyTimeTemp.uiMonthDate = 0;
+				sModifyTimeTemp.uiHourMin = 0;
+				SaveModifyTime(FLASH_MODIFY_TIME_ADR, sModifyTimeTemp);
+				break;
+		}
+		while(1){
+			DisplayString(2,1,"FLASH 恢复完成");
+			OSTimeDlyHMSM(0,0,0,500,OS_OPT_TIME_HMSM_STRICT,&err);
+      g_ucBeepOnCnt = 0;			
 		}
 #endif 	
 	}

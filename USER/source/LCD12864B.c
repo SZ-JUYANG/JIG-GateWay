@@ -172,7 +172,7 @@ void Lcd12864_string(unsigned char ucAdd,const char *p)
   * @param  ucLine(1-4),ucColumn(1 - 8)
   * @retval None
 *******************************************************************************/
-void DisplayString(unsigned char ucLine,unsigned char ucColumn,unsigned char *s)
+void DisplayString(unsigned char ucLine,unsigned char ucColumn,char *s)
 {
   unsigned char ucTempCom;
 	lcd_wcmd(0x03);// set ??

@@ -91,7 +91,7 @@ u8 IIC_Read_One_Byte(u8 daddr,u8 addr);
 #define AT24C08		1023
 #define AT24C16		2047
 #define AT24C32		4095
-#define AT24C64	    8191
+#define AT24C64	  8191
 #define AT24C128	16383
 #define AT24C256	32767  
 //Mini STM32开发板使用的是24c02，所以定义EE_TYPE为AT24C02

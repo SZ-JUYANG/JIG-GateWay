@@ -483,6 +483,11 @@
               <FileType>1</FileType>
               <FilePath>..\USER\source\RS485.c</FilePath>
             </File>
+            <File>
+              <FileName>FlashOperate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\source\FlashOperate.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

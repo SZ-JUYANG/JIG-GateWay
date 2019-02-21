@@ -23,7 +23,7 @@
 //void LCD12864G_GPIO_Config(void);
 void Lcd12864_init(void);
 //void Lcd12864_string(unsigned char ucAdd,const char *p);
-void DisplayString(unsigned char ucLine,unsigned char ucColumn,unsigned char *s);
+void DisplayString(unsigned char ucLine,unsigned char ucColumn,char *s);
 void Lcd12864_clear(void) ;
 void DisplayChar(unsigned char ucLine,unsigned char ucColumn,unsigned char s);
 void LCD_delay_ms(unsigned int Counter);

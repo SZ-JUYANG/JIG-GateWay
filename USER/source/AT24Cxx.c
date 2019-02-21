@@ -44,15 +44,6 @@
 //初始化IIC
 void IIC_Init(void)
 {
-/*	GPIO_InitTypeDef GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(	RCC_APB2Periph_GPIOB, ENABLE );	//使能GPIOB时钟
-	   
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6|GPIO_Pin_7;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP ;   //推挽输出
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStructure);
-	GPIO_SetBits(GPIOB,GPIO_Pin_6|GPIO_Pin_7); 	         //PB6,PB7 输出高
-*/
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(	RCC_APB2Periph_GPIOD, ENABLE );	//使能GPIOD时钟
 		   
@@ -61,8 +52,6 @@ void IIC_Init(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOD, &GPIO_InitStructure);
 	GPIO_SetBits(GPIOD,GPIO_Pin_9|GPIO_Pin_10); 	         //PB10,PB11 输出高
-	
-
 }
 //产生IIC起始信号
 void IIC_Start(void)
@@ -135,12 +124,10 @@ void IIC_NAck(void)
 //0，无应答			  
 void IIC_Send_Byte(u8 txd)
 {                        
-    u8 t;   
+  u8 t;   
 	SDA_OUT(); 	    
-    IIC_SCL=0;//拉低时钟开始数据传输
-    for(t=0;t<8;t++)
-    {              
-        //IIC_SDA=(txd&0x80)>>7;
+	IIC_SCL=0;//拉低时钟开始数据传输
+	for(t=0;t<8;t++){              
 		if((txd&0x80)>>7)
 			IIC_SDA=1;
 		else
@@ -151,30 +138,27 @@ void IIC_Send_Byte(u8 txd)
 		delay_us(2); 
 		IIC_SCL=0;	
 		delay_us(2);
-    }	 
+	}	 
 } 	    
 //读1个字节，ack=1时，发送ACK，ack=0，发送nACK   
 u8 IIC_Read_Byte(unsigned char ack)
 {
 	unsigned char i,receive=0;
 	SDA_IN();//SDA设置为输入
-  for(i=0;i<8;i++ )
-	{
-        IIC_SCL=0; 
-        delay_us(2);
+  for(i=0;i<8;i++){
+    IIC_SCL=0; 
+    delay_us(2);
 		IIC_SCL=1;
-        receive<<=1;
-        if(READ_SDA)receive++;   
+    receive<<=1;
+    if(READ_SDA)receive++;   
 		delay_us(1); 
-    }					 
-    if (!ack)
-        IIC_NAck();//发送nACK
-    else
-        IIC_Ack(); //发送ACK   
-    return receive;
+  }					 
+  if(!ack)
+    IIC_NAck();//发送nACK
+  else
+    IIC_Ack(); //发送ACK   
+  return receive;
 }
-
-
 
 //初始化IIC接口
 void AT24CXX_Init(void)

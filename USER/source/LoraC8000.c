@@ -305,7 +305,9 @@ unsigned char  ReadFailID_FromEEPROM(void)
 	for(i = 0;i < 5;i++){
 		AT24CXX_Read(PLC_FAIL_ID_NUM_ADD,ucTempID,5);//读取分配失败的ID 个数
 		if(CheckEEPROM_Frame(ucTempID,5)){
+#if ID_RECYCLE_EN == 1
 			ucFailIDNum = ucTempID[2];
+#endif
 			break;
 		}
 		OSTimeDlyHMSM(0,0,0,50,OS_OPT_TIME_HMSM_STRICT,&err);
@@ -346,12 +348,12 @@ unsigned char  ReadFailID_FromEEPROM(void)
 void ID_BufRefresh(void)
 {
 	unsigned char i,j;
-	for (i = 0;i < ucFailIDNum;i++){
-		if (g_uiFailID[i]!= 0){
+	for(i = 0;i < ucFailIDNum;i++){
+		if(g_uiFailID[i]!= 0){
 			continue ;
 		}
-		for (j = i;j < ucFailIDNum;j++){
-			if (g_uiFailID[j] != 0){
+		for(j = i;j < ucFailIDNum;j++){
+			if(g_uiFailID[j] != 0){
 				g_uiFailID[i] = g_uiFailID[j];
 				g_uiFailID[j] = 0;
 				break;
@@ -360,12 +362,14 @@ void ID_BufRefresh(void)
 	}
 
 	j = 0;
-	for (i = 0; i < ucFailIDNum; i++){
-		if (g_uiFailID[i] != 0){
+	for(i = 0; i < ucFailIDNum; i++){
+		if(g_uiFailID[i] != 0){
 			j++;
 		}
 	}
+#if ID_RECYCLE_EN == 1
 	ucFailIDNum = j;	
+#endif
 }
 
 /*******************************************************************************
@@ -407,8 +411,12 @@ static void  ID_BufIn (unsigned int code)
 				return ;
 			}
 		}
+#ifndef ID_RECYCLE_EN
+	#error " Please define ID_RECYCLE_EN!"
+#elif ID_RECYCLE_EN == 1
 		g_uiFailID[ucFailIDNum++] = code; //将失败的ID装入失败ID保存数组，并且失败ID总数量加1
 		SaveFailID_ToEEPROM();
+#endif
 	}	
 }
 

@@ -66,3 +66,4 @@
 .\output\main.o: ..\USER\include\LoraC8000.h
 .\output\main.o: ..\USER\include\LoraC6000.h
 .\output\main.o: ..\USER\include\RS485.h
+.\output\main.o: ..\USER\include\FlashOperate.h
