@@ -42,7 +42,8 @@
 #endif
 #define ID_START             0x0100708A
 #define WRITE_EEPROM_EN      0 /* 修改存储在EEPROM的ID使能位；0：关闭； 1：修改ID； 2：修改FLASH存储的修改时间为0 */
-#if WRITE_EEPROM_EN == 1
+#if WRITE_EEPROM_EN == 1            
+  /* 生成修改ID的烧录文件时，填写当时的时间 */
 	#define MODIFY_TIME_YEAR           0x2019   /* 年：   0Xyyyy */
 	#define MODIFY_TIME_MONTH_DATE     0x0221   /* 月日：0xmmdd */
 	#define MODIFY_TIME_HOUR_MIN       0x1504   /* 时分：0xhhmm */
@@ -64,8 +65,8 @@
 
 #define BEEP_ON_TIME 200 // 按键按一次响100ms
 /******************LED治具参数*********************************/
-#define AT_ID_ADD  0x00 // 存储在AT24 EEPROM ID地址
-#define AT_ERR_ADD 0x10 // 存储在AT24 EEPROM 误差系数地址
+#define AT_ID_ADD   0x00 // 存储在AT24 EEPROM ID地址
+#define AT_ERR_ADD  0x10 // 存储在AT24 EEPROM 误差系数地址
 
 #define DEVICE_ADD  0x01 //存储设备码地址
 #define CUR_ID_ADD  0x02 //存储当前电源ID

@@ -31,7 +31,7 @@ I (..\Libraries\inc\stm32f10x_tim.h)(0x5969CBF0)
 I (..\Libraries\inc\stm32f10x_usart.h)(0x5969CBF0)
 I (..\Libraries\inc\stm32f10x_wwdg.h)(0x5969CBF0)
 I (..\Libraries\inc\misc.h)(0x5969CBF0)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\uCOSIII\UCOS_CONFIG\includes.h)(0x5969CBF8)
@@ -97,7 +97,7 @@ I (..\Libraries\inc\stm32f10x_usart.h)(0x5969CBF0)
 I (..\Libraries\inc\stm32f10x_wwdg.h)(0x5969CBF0)
 I (..\Libraries\inc\misc.h)(0x5969CBF0)
 I (..\USER\include\System_Initialize.h)(0x5969CBF8)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (..\USER\include\STM32_UART.h)(0x5969CBF8)
 I (..\USER\include\LoraC8000.h)(0x5C4E661B)
 F (..\USER\source\KeyDriver.c)(0x5969CBF8)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\Libraries\inc -I..\USER\include -I..\uCOSIII\uC-CPU -I..\uCOSIII\uC-LIB -I..\uCOSIII\uCOS-III -I..\uCOSIII\UCOS_BSP -I..\uCOSIII\UCOS_CONFIG -I..\uCOSIII\uCOS-III\Source -I..\uCOSIII\uC-CPU\ARM-Cortex-M3\RealView -I..\uCOSIII\uC-LIB\Ports\ARM-Cortex-M3\RealView -I..\uCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView -I..\SYSTEM\delay -I..\SYSTEM\sys-I E:\¾ÛÑô\GITraken\JIG-GateWay\Project\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_XL -DUSE_STDPERIPH_DRIVER-o .\output\keydriver.o --omf_browse .\output\keydriver.crf --depend .\output\keydriver.d)
@@ -159,7 +159,7 @@ I (..\Libraries\inc\stm32f10x_tim.h)(0x5969CBF0)
 I (..\Libraries\inc\stm32f10x_usart.h)(0x5969CBF0)
 I (..\Libraries\inc\stm32f10x_wwdg.h)(0x5969CBF0)
 I (..\Libraries\inc\misc.h)(0x5969CBF0)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (..\USER\include\System_Initialize.h)(0x5969CBF8)
 I (..\USER\include\LoraC8000.h)(0x5C4E661B)
 F (..\USER\source\LCD12864B.c)(0x5C63B776)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\Libraries\inc -I..\USER\include -I..\uCOSIII\uC-CPU -I..\uCOSIII\uC-LIB -I..\uCOSIII\uCOS-III -I..\uCOSIII\UCOS_BSP -I..\uCOSIII\UCOS_CONFIG -I..\uCOSIII\uCOS-III\Source -I..\uCOSIII\uC-CPU\ARM-Cortex-M3\RealView -I..\uCOSIII\uC-LIB\Ports\ARM-Cortex-M3\RealView -I..\uCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView -I..\SYSTEM\delay -I..\SYSTEM\sys-I E:\¾ÛÑô\GITraken\JIG-GateWay\Project\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_XL -DUSE_STDPERIPH_DRIVER-o .\output\lcd12864b.o --omf_browse .\output\lcd12864b.crf --depend .\output\lcd12864b.d)
@@ -193,7 +193,7 @@ I (..\Libraries\inc\stm32f10x_wwdg.h)(0x5969CBF0)
 I (..\Libraries\inc\misc.h)(0x5969CBF0)
 I (..\USER\include\LCD12864B.h)(0x5C63B7B2)
 I (..\USER\include\System_Initialize.h)(0x5969CBF8)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
@@ -278,7 +278,7 @@ I (..\Libraries\inc\stm32f10x_tim.h)(0x5969CBF0)
 I (..\Libraries\inc\stm32f10x_usart.h)(0x5969CBF0)
 I (..\Libraries\inc\stm32f10x_wwdg.h)(0x5969CBF0)
 I (..\Libraries\inc\misc.h)(0x5969CBF0)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (..\USER\include\MENU.h)(0x5969CBF8)
 I (..\USER\include\LCD12864B.h)(0x5C63B7B2)
 I (..\USER\include\System_Initialize.h)(0x5969CBF8)
@@ -344,7 +344,7 @@ I (..\Libraries\inc\misc.h)(0x5969CBF0)
 I (..\SYSTEM\delay\delay.h)(0x5969CBF8)
 I (..\SYSTEM\sys\sys.h)(0x5969CBF8)
 I (..\USER\include\System_Initialize.h)(0x5969CBF8)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (..\USER\include\STM32_UART.h)(0x5969CBF8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
@@ -403,7 +403,7 @@ I (..\Libraries\inc\misc.h)(0x5969CBF0)
 I (..\SYSTEM\delay\delay.h)(0x5969CBF8)
 I (..\SYSTEM\sys\sys.h)(0x5969CBF8)
 I (..\USER\include\System_Initialize.h)(0x5969CBF8)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (..\USER\include\STM32_UART.h)(0x5969CBF8)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\uCOSIII\UCOS_CONFIG\includes.h)(0x5969CBF8)
@@ -524,7 +524,7 @@ I (..\Libraries\inc\stm32f10x_wwdg.h)(0x5969CBF0)
 I (..\Libraries\inc\misc.h)(0x5969CBF0)
 I (..\USER\include\stm32f10x_it.h)(0x5969CBF8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
-F (..\USER\source\LoraC8000.c)(0x5C6DFBAC)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\Libraries\inc -I..\USER\include -I..\uCOSIII\uC-CPU -I..\uCOSIII\uC-LIB -I..\uCOSIII\uCOS-III -I..\uCOSIII\UCOS_BSP -I..\uCOSIII\UCOS_CONFIG -I..\uCOSIII\uCOS-III\Source -I..\uCOSIII\uC-CPU\ARM-Cortex-M3\RealView -I..\uCOSIII\uC-LIB\Ports\ARM-Cortex-M3\RealView -I..\uCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView -I..\SYSTEM\delay -I..\SYSTEM\sys-I E:\¾ÛÑô\GITraken\JIG-GateWay\Project\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_XL -DUSE_STDPERIPH_DRIVER-o .\output\lorac8000.o --omf_browse .\output\lorac8000.crf --depend .\output\lorac8000.d)
+F (..\USER\source\LoraC8000.c)(0x5C750F6D)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\Libraries\inc -I..\USER\include -I..\uCOSIII\uC-CPU -I..\uCOSIII\uC-LIB -I..\uCOSIII\uCOS-III -I..\uCOSIII\UCOS_BSP -I..\uCOSIII\UCOS_CONFIG -I..\uCOSIII\uCOS-III\Source -I..\uCOSIII\uC-CPU\ARM-Cortex-M3\RealView -I..\uCOSIII\uC-LIB\Ports\ARM-Cortex-M3\RealView -I..\uCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView -I..\SYSTEM\delay -I..\SYSTEM\sys-I E:\¾ÛÑô\GITraken\JIG-GateWay\Project\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_XL -DUSE_STDPERIPH_DRIVER-o .\output\lorac8000.o --omf_browse .\output\lorac8000.crf --depend .\output\lorac8000.d)
 I (..\CMSIS\stm32f10x.h)(0x5969CBEF)
 I (..\CMSIS\core_cm3.h)(0x5969CBEF)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -556,7 +556,7 @@ I (..\Libraries\inc\misc.h)(0x5969CBF0)
 I (..\SYSTEM\delay\delay.h)(0x5969CBF8)
 I (..\SYSTEM\sys\sys.h)(0x5969CBF8)
 I (..\USER\include\System_Initialize.h)(0x5969CBF8)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (..\USER\include\STM32_UART.h)(0x5969CBF8)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\uCOSIII\UCOS_CONFIG\includes.h)(0x5969CBF8)
@@ -632,10 +632,10 @@ I (..\uCOSIII\UCOS_CONFIG\os_cfg.h)(0x5969CBF8)
 I (..\uCOSIII\uCOS-III\Source\os_type.h)(0x5969CBFA)
 I (..\uCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu.h)(0x5969CBF9)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 F (..\USER\source\RS485.c)(0x59F7F6A9)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\Libraries\inc -I..\USER\include -I..\uCOSIII\uC-CPU -I..\uCOSIII\uC-LIB -I..\uCOSIII\uCOS-III -I..\uCOSIII\UCOS_BSP -I..\uCOSIII\UCOS_CONFIG -I..\uCOSIII\uCOS-III\Source -I..\uCOSIII\uC-CPU\ARM-Cortex-M3\RealView -I..\uCOSIII\uC-LIB\Ports\ARM-Cortex-M3\RealView -I..\uCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView -I..\SYSTEM\delay -I..\SYSTEM\sys-I E:\¾ÛÑô\GITraken\JIG-GateWay\Project\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_XL -DUSE_STDPERIPH_DRIVER-o .\output\rs485.o --omf_browse .\output\rs485.crf --depend .\output\rs485.d)
 I (..\USER\include\STM32_UART.h)(0x5969CBF8)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 I (..\USER\include\LoraC8000.h)(0x5C4E661B)
 I (..\USER\include\AT24Cxx.h)(0x5C6E0A7A)
 I (..\CMSIS\stm32f10x.h)(0x5969CBEF)
@@ -697,7 +697,7 @@ I (..\Libraries\inc\stm32f10x_usart.h)(0x5969CBF0)
 I (..\Libraries\inc\stm32f10x_wwdg.h)(0x5969CBF0)
 I (..\Libraries\inc\misc.h)(0x5969CBF0)
 I (..\USER\include\FlashOperate.h)(0x5C6E246C)
-I (..\USER\include\main.h)(0x5C6E4F7D)
+I (..\USER\include\main.h)(0x5C6F9220)
 F (..\CMSIS\core_cm3.c)(0x5969CBEF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\Libraries\inc -I..\USER\include -I..\uCOSIII\uC-CPU -I..\uCOSIII\uC-LIB -I..\uCOSIII\uCOS-III -I..\uCOSIII\UCOS_BSP -I..\uCOSIII\UCOS_CONFIG -I..\uCOSIII\uCOS-III\Source -I..\uCOSIII\uC-CPU\ARM-Cortex-M3\RealView -I..\uCOSIII\uC-LIB\Ports\ARM-Cortex-M3\RealView -I..\uCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView -I..\SYSTEM\delay -I..\SYSTEM\sys-I E:\¾ÛÑô\GITraken\JIG-GateWay\Project\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_XL -DUSE_STDPERIPH_DRIVER-o .\output\core_cm3.o --omf_browse .\output\core_cm3.crf --depend .\output\core_cm3.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
 F (..\CMSIS\system_stm32f10x.c)(0x5969CBEF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\Libraries\inc -I..\USER\include -I..\uCOSIII\uC-CPU -I..\uCOSIII\uC-LIB -I..\uCOSIII\uCOS-III -I..\uCOSIII\UCOS_BSP -I..\uCOSIII\UCOS_CONFIG -I..\uCOSIII\uCOS-III\Source -I..\uCOSIII\uC-CPU\ARM-Cortex-M3\RealView -I..\uCOSIII\uC-LIB\Ports\ARM-Cortex-M3\RealView -I..\uCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView -I..\SYSTEM\delay -I..\SYSTEM\sys-I E:\¾ÛÑô\GITraken\JIG-GateWay\Project\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_XL -DUSE_STDPERIPH_DRIVER-o .\output\system_stm32f10x.o --omf_browse .\output\system_stm32f10x.crf --depend .\output\system_stm32f10x.d)

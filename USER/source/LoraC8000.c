@@ -26,7 +26,7 @@
 //#define OFF_LINE 0x00
 //#define ON_LINE  0x01
  
-unsigned char ucNodeIDTable[NODE_NUM]={0X01,0X02,0x04};//存放治具LoraID  NODE_NUM define in LoraC8000.h
+unsigned char ucNodeIDTable[NODE_NUM]={0X01,0X02,0x05};//存放治具LoraID  NODE_NUM define in LoraC8000.h
 //unsigned char ucNodeIDTable[NODE_NUM]={0x04};
 
 ScmTask fg_sTask[TASK_MAX];
@@ -917,6 +917,7 @@ void TaskOperation(void)
 		g_ucNodeCurrentIndex = i;
 		if(s_ucRecvFlag == 1){  //上一次接收成功 则延时2s再进行下一次
 			s_ucRecvFlag = 0;
+			g_ucBeepOnCnt = 0;/* 收到数据，蜂鸣器响一声0.2s */
 			for(k=j;k<(100+j);k++){
 				OSTimeDlyHMSM(0,0,0,20,OS_OPT_TIME_HMSM_STRICT,&err);
 			}			
@@ -928,7 +929,7 @@ void TaskOperation(void)
 		g_ucC8000_RcvFlag = 0;
 		memset(g_ucC8000_RecBuf,0,g_ucC8000_RecLen);
 		for(j=0;j<100;j++){ //等待节点响应上面发出去的心跳				  
-			if(g_ucC8000_RcvFlag == 1){
+			if(g_ucC8000_RcvFlag == 1){ 
 				g_ucRx_D_LedOnCnt = 0; //灯闪一下
 				CheckReceiveData(g_ucC8000_RecBuf,g_ucC8000_RecLen); //根据节点的回应，确定处于什么通信步骤						   
 				g_ucC8000_RcvFlag = 0;
